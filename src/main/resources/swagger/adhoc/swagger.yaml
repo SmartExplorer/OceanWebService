@@ -1,0 +1,528 @@
+swagger: '2.0'
+info:
+  title: Ocean Trade Data API
+  description: Get Ocean Trade Data using Rest API
+  version: 1.0.0
+host: fxomdlnx3u.nam.nsroot.net:9999
+schemes:
+  - http
+basePath: /data/api/ocean
+produces:
+  - application/json
+paths:
+  /queryHint:
+    get:
+      description: |
+        The Search Trades endpoint returns related fields containing search value and provide suggestions for query.
+      parameters:
+        - name: value
+          in: query
+          description: search value
+          required: true
+          type: string
+        - name: userId
+          in: query
+          description: User SOEID or Functional ID
+          required: true
+          type: string
+      tags:
+        - trades
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SearchResult'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /queryTrades:
+    get:
+      description: |
+        The Query Trades endpoint returns trades data stored in Ocean filtered using input filter criteria. The response includes the total number of records, time taken for query to execute and data rows of trade query result.
+      parameters:
+        - name: category
+          in: query
+          description: Category of data to be searched. (OTC, CASH, ETD) The value is provided by queryHint
+          type: string
+        - name: UITID
+          in: query
+          description: UITIDs, comma separated
+          type: string
+        - name: TRADE_DATE_FROM
+          in: query
+          description: Trade date from
+          type: string
+          format: date
+        - name: TRADE_DATE_TO
+          in: query
+          description: Trade date to
+          type: string
+          format: date
+        - name: TRADE_DATE_RANGE
+          in: query
+          description: Trade date range from today, in days
+          type: integer
+        - name: OCEAN_PROCESS_DATE
+          in: query
+          description: OCEAN Datewarehouse Process Date
+          type: string
+          format: date
+        - name: SRC_SYS
+          in: query
+          description: Trade source systems, comma separated
+          type: string
+        - name: NOTIONAL1_CRCY
+          in: query
+          description: Notional Currency, comma separated
+          type: string
+        - name: NOTIONAL2_CRCY
+          in: query
+          description: Notional Currency, comma separated
+          type: string
+        - name: TRADE_TYPE
+          in: query
+          description: Trade Types, comma separated
+          type: string
+        - name: PRIMARY_ASSET_CLASS
+          in: query
+          description: Primary asset class, comma separated
+          type: string
+        - name: PRODUCT_ID
+          in: query
+          description: Product ID, comma separated
+          type: string
+        - name: BASE_PRODUCT_TYPE
+          in: query
+          description: Base Product Type, comma separated
+          type: string
+        - name: SMCP
+          in: query
+          description: SMCPs, comma separated
+          type: string
+        - name: CUSIP
+          in: query
+          description: CUSIPs, comma separated
+          type: string
+        - name: TICKER
+          in: query
+          description: TICKERs, comma separated
+          type: string
+        - name: FII
+          in: query
+          description: FIIs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL6
+          in: query
+          description: MGD_SEG_LEVEL6s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL7
+          in: query
+          description: MGD_SEG_LEVEL7s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL8
+          in: query
+          description: MGD_SEG_LEVEL8s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL9
+          in: query
+          description: MGD_SEG_LEVEL9s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL6_DESCR
+          in: query
+          description: MGD_SEG_LEVEL6_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL7_DESCR
+          in: query
+          description: MGD_SEG_LEVEL7_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL8_DESCR
+          in: query
+          description: MGD_SEG_LEVEL8_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL9_DESCR
+          in: query
+          description: MGD_SEG_LEVEL9_DESCRs, comma separated
+          type: string
+        - name: FIRM_GFCID
+          in: query
+          description: FIRM GFCIDs, comma separated
+          type: string
+        - name: FIRM_BRANCH_CODE
+          in: query
+          description: FIRM_BRANCH_CODEs, comma separated
+          type: string
+        - name: FIRM_ACCT_MNEMONIC
+          in: query
+          description: FIRM_ACCT_MNEMONICs, comma separated
+          type: string
+        - name: COUNTER_PARTY_ACCT_MNEMONIC
+          in: query
+          description: COUNTER_PARTY_ACCT_MNEMONICs, comma separated
+          type: string
+        - name: COUNTER_PARTY_GFCID
+          in: query
+          description: COUNTER_PARTY_GFCIDs, comma separated
+          type: string
+        - name: COUNTER_PARTY_BASE_NUMBER
+          in: query
+          description: COUNTER_PARTY_BASE_NUMBERs, comma separated
+          type: string
+        - name: columns
+          in: query
+          description: Column names to return, comma separated. If not present, all columns in table will be returned
+          type: string
+        - name: orderByAsc
+          in: query
+          description: Returned data sorted in ascending order by the listed columns. Mutually exclusive with orderByDesc
+          type: string  
+        - name: orderByDesc
+          in: query
+          description: Returned data sorted in ascending order by the listed columns. Mutually exclusive with orderByAsc
+          type: string 
+        - name: maxRows
+          in: query
+          description: Maximum number of rows to return
+          required: true
+          type: number
+          format: integer
+        - name: userId
+          in: query
+          description: User SOEID or Functional ID
+          required: true
+          type: string
+      tags:
+        - trades    
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TradeResult'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /aggregateTrades:
+    get:
+      description: |
+        The Aggregate Trades endpoint returns aggregated information on the trade query.
+      parameters:
+        - name: aggFields
+          in: query
+          description: fields to aggregate to group by, comma separated. Supported values are TRADE_DATE, OCEAN_PROCESS_DATE, SRC_SYS, TRD_STATUS, NOTIONAL1_CRCY, NOTIONAL2_CRCY,TRADE_TYPE, PRODUCT_ID, BASE_PRODUCT_TYPE, SMCP, CUSIP, TICKER, FII, MGD_SEG_LEVEL8_DESCR, FIRM_GFCID, COUNTER_PARTY_GFCID, FIRM_ACCT_MNEMONIC, COUNTER_PARTY_ACCT_MNEMONIC
+          required: true
+          type: string
+        - name: aggValues
+          in: query
+          description: values to show after applying aggregation, comma separated matching sequence of aggOperations. Non-notional values can only be applied with count operation.
+          required: true
+          type: string
+        - name: aggOperations
+          in: query
+          description: Aggregation operation applied to aggregation values, comma separated matching sequence of aggValues. Supported values are count, sum, average.
+          required: true
+          type: string
+        - name: category
+          in: query
+          description: Category of data to be searched. (OTC, CASH, ETD) The value is provided by queryHint
+          type: string
+        - name: UITID
+          in: query
+          description: UITIDs, comma separated
+          type: string
+        - name: TRADE_DATE_FROM
+          in: query
+          description: Trade date from
+          type: string
+          format: date
+        - name: TRADE_DATE_TO
+          in: query
+          description: Trade date to
+          type: string
+          format: date
+        - name: TRADE_DATE_RANGE
+          in: query
+          description: Trade date range from today, in days
+          type: integer
+        - name: OCEAN_PROCESS_DATE
+          in: query
+          description: OCEAN Datewarehouse Process Date
+          type: string
+          format: date
+        - name: SRC_SYS
+          in: query
+          description: Trade source systems, comma separated
+          type: string
+        - name: NOTIONAL1_CRCY
+          in: query
+          description: Notional Currency, comma separated
+          type: string
+        - name: NOTIONAL2_CRCY
+          in: query
+          description: Notional Currency, comma separated
+          type: string
+        - name: TRADE_TYPE
+          in: query
+          description: Trade Types, comma separated
+          type: string
+        - name: PRIMARY_ASSET_CLASS
+          in: query
+          description: Primary asset class, comma separated
+          type: string
+        - name: PRODUCT_ID
+          in: query
+          description: Product ID, comma separated
+          type: string
+        - name: BASE_PRODUCT_TYPE
+          in: query
+          description: Base Product Type, comma separated
+          type: string
+        - name: SMCP
+          in: query
+          description: SMCPs, comma separated
+          type: string
+        - name: CUSIP
+          in: query
+          description: CUSIPs, comma separated
+          type: string
+        - name: TICKER
+          in: query
+          description: TICKERs, comma separated
+          type: string
+        - name: FII
+          in: query
+          description: FIIs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL6
+          in: query
+          description: MGD_SEG_LEVEL6s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL7
+          in: query
+          description: MGD_SEG_LEVEL7s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL8
+          in: query
+          description: MGD_SEG_LEVEL8s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL9
+          in: query
+          description: MGD_SEG_LEVEL9s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL6_DESCR
+          in: query
+          description: MGD_SEG_LEVEL6_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL7_DESCR
+          in: query
+          description: MGD_SEG_LEVEL7_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL8_DESCR
+          in: query
+          description: MGD_SEG_LEVEL8_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL9_DESCR
+          in: query
+          description: MGD_SEG_LEVEL9_DESCRs, comma separated
+          type: string
+        - name: FIRM_GFCID
+          in: query
+          description: FIRM GFCIDs, comma separated
+          type: string
+        - name: FIRM_BRANCH_CODE
+          in: query
+          description: FIRM_BRANCH_CODEs, comma separated
+          type: string
+        - name: FIRM_ACCT_MNEMONIC
+          in: query
+          description: FIRM_ACCT_MNEMONICs, comma separated
+          type: string
+        - name: COUNTER_PARTY_ACCT_MNEMONIC
+          in: query
+          description: COUNTER_PARTY_ACCT_MNEMONICs, comma separated
+          type: string
+        - name: COUNTER_PARTY_GFCID
+          in: query
+          description: COUNTER_PARTY_GFCIDs, comma separated
+          type: string
+        - name: COUNTER_PARTY_BASE_NUMBER
+          in: query
+          description: COUNTER_PARTY_BASE_NUMBERs, comma separated
+          type: string
+        - name: orderByAsc
+          in: query
+          description: Returned data sorted in ascending order by the listed columns. Mutually exclusive with orderByDesc
+          type: string  
+        - name: orderByDesc
+          in: query
+          description: Returned data sorted in ascending order by the listed columns. Mutually exclusive with orderByAsc
+          type: string 
+        - name: userId
+          in: query
+          description: User SOEID or Functional ID
+          required: true
+          type: string
+      tags:
+        - trades    
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TradeResult'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /filterValues:
+    get:
+      description: |
+        The filterValues Trades endpoint returns the list of possible values to filter by for a particular field for the trade query.
+      parameters:
+        - name: filterField
+          in: query
+          description: Field to generate possible filter values for. Supported fields include SRC_SYS,PRODUCT_ID, BASE_PRODUCT_TYPE,  PRIMARY_ASSET_CLASS, FIRM_ACCT_MNEMONIC, MGD_SEG_LEVEL6,  MGD_SEG_LEVEL7, MGD_SEG_LEVEL8, MGD_SEG_LEVEL9,  MGD_SEG_LEVEL6_DESCR, MGD_SEG_LEVEL7_DESCR, MGD_SEG_LEVEL8_DESCR,  MGD_SEG_LEVEL9_DESCR, FIRM_BRANCH_CODE,FIRM_GFCID,  COUNTER_PARTY_ACCT_MNEMONIC, COUNTER_PARTY_GFCID,  COUNTER_PARTY_BASE_NUMBER
+          required: true
+          type: string
+        - name: category
+          in: query
+          description: Category of data to be searched. (OTC, CASH, ETD) The value is provided by queryHint
+          type: string
+        - name: SRC_SYS
+          in: query
+          description: Trade source systems, comma separated
+          type: string
+        - name: PRIMARY_ASSET_CLASS
+          in: query
+          description: Primary asset class, comma separated
+          type: string
+        - name: PRODUCT_ID
+          in: query
+          description: Product ID, comma separated
+          type: string
+        - name: BASE_PRODUCT_TYPE
+          in: query
+          description: Base Product Type, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL6
+          in: query
+          description: MGD_SEG_LEVEL6s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL7
+          in: query
+          description: MGD_SEG_LEVEL7s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL8
+          in: query
+          description: MGD_SEG_LEVEL8s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL9
+          in: query
+          description: MGD_SEG_LEVEL9s, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL6_DESCR
+          in: query
+          description: MGD_SEG_LEVEL6_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL7_DESCR
+          in: query
+          description: MGD_SEG_LEVEL7_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL8_DESCR
+          in: query
+          description: MGD_SEG_LEVEL8_DESCRs, comma separated
+          type: string
+        - name: MGD_SEG_LEVEL9_DESCR
+          in: query
+          description: MGD_SEG_LEVEL9_DESCRs, comma separated
+          type: string
+        - name: FIRM_GFCID
+          in: query
+          description: FIRM GFCIDs, comma separated
+          type: string
+        - name: FIRM_BRANCH_CODE
+          in: query
+          description: FIRM_BRANCH_CODEs, comma separated
+          type: string
+        - name: FIRM_ACCT_MNEMONIC
+          in: query
+          description: FIRM_ACCT_MNEMONICs, comma separated
+          type: string
+        - name: COUNTER_PARTY_ACCT_MNEMONIC
+          in: query
+          description: COUNTER_PARTY_ACCT_MNEMONICs, comma separated
+          type: string
+        - name: COUNTER_PARTY_GFCID
+          in: query
+          description: COUNTER_PARTY_GFCIDs, comma separated
+          type: string
+        - name: COUNTER_PARTY_BASE_NUMBER
+          in: query
+          description: COUNTER_PARTY_BASE_NUMBERs, comma separated
+          type: string
+        - name: userId
+          in: query
+          description: User SOEID or Functional ID
+          required: true
+          type: string
+      tags:
+        - trades    
+      responses:
+        '200':
+          description: Successful response
+          schema:
+            type: array
+            items:
+                type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  SearchResult:
+    type: object
+    properties:
+      category:
+        type: string
+      subCategory:
+        type: string
+      value:
+        type: string
+      
+  TradeResult:
+    type: object
+    properties:
+      TotalCount:
+        type: integer
+      ExecutionTime:
+        type: string
+      DataRows:
+        $ref: '#/definitions/TradeData'
+  TradeData:
+    type: object
+    properties:
+      columns:
+          type: array
+          items:
+            type: string
+      rows:
+          type: array
+          items:
+            $ref: '#/definitions/TradeRow'
+  TradeRow:
+    type: array
+    items:
+      type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
+        

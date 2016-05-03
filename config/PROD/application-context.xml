@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="otcTableSchema" class="com.citi.ocean.restapi.datasource.base.TableSchema">
+		<property name="tableName" value="OTC_DERIV_TRADE_MASTER"/>
+		<property name="columnTypes">
+			<map>
+				<entry key="OCEAN_ID"			value="java.lang.Long" />
+				<entry key="UITID"			value="java.lang.String" />
+				<entry key="SRC_SYS_CONTRACT_ID"	value="java.lang.String" />
+				<entry key="SRC_SYS_CONTRACT_VER"	value="java.lang.String" />
+				<entry key="OASYS_DEAL_ID"		value="java.lang.String" />
+				<entry key="SRC_SYS"			value="java.lang.String" />
+				<entry key="PRODUCT_ID"			value="java.lang.String" />
+				<entry key="BASE_PRODUCT_TYPE"		value="java.lang.String" />
+				<entry key="PRIMARY_ASSET_CLASS"	value="java.lang.String" />
+				<entry key="LIFECYCLE_STATE"		value="java.lang.String" />
+				<entry key="EVENT_TYPE"			value="java.lang.String" />
+				<entry key="ACTIVE_FLAG"		value="char" />
+				<entry key="TRD_DATE"			value="java.time.LocalDate" />
+				<entry key="TERM_DATE"			value="java.time.LocalDate" />
+				<entry key="MODIFICATION_TS"		value="java.time.Instant" />
+				<entry key="MESSAGE_CREATE_TS"		value="java.time.Instant" />
+				<entry key="OCEAN_CREATE_TS"		value="java.time.Instant" />
+				<entry key="NOTIONAL1_AMT"		value="java.lang.Double" />
+				<entry key="NOTIONAL1_CRCY"		value="java.lang.String" />
+				<entry key="NOTIONAL2_AMT"		value="java.lang.Double" />
+				<entry key="NOTIONAL2_CRCY"		value="java.lang.String" />
+				<entry key="FIRM_BUY_SELL_IND"		value="java.lang.String" />
+				<entry key="FIRM_ACCT_MNEMONIC"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL6"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL7"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL8"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL9"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL6_DESCR"	value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL7_DESCR"	value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL8_DESCR"	value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL9_DESCR"	value="java.lang.String" />
+				<entry key="FIRM_BRANCH_CODE"		value="java.lang.String" />
+				<entry key="FIRM_GFCID"			value="java.lang.String" />
+				<entry key="COUNTER_PARTY_ACCT_MNEMONIC" value="java.lang.String" />
+				<entry key="COUNTER_PARTY_GFCID"	value="java.lang.String" />
+				<entry key="COUNTER_PARTY_BASE_NUMBER"	value="java.lang.String" />
+				<entry key="TRADER_SOEID"		value="java.lang.String" />
+				<entry key="SALESPERSON_SOEID"		value="java.lang.String" />
+				<entry key="EVPERSON_SOEID"		value="java.lang.String" />
+			</map>
+		</property>
+	</bean>
+	<bean id="cashEtdTableSchema" class="com.citi.ocean.restapi.datasource.base.TableSchema">
+		<property name="tableName" value="CASH_ETD_TRADE_MASTER"/>
+		<property name="columnTypes">
+			<map>
+				<entry key="OCEAN_ID"				value="java.lang.Long" />
+				<entry key="BUSINESS_FUNCTION"			value="java.lang.String" />
+				<entry key="UITID"				value="java.lang.String" />
+				<entry key="SRC_SYS_CONTRACT_ID"		value="java.lang.String" />
+				<entry key="SRC_SYS_CONTRACT_VER"		value="java.lang.String" />
+				<entry key="OASYS_DEAL_ID"			value="java.lang.String" />
+				<entry key="SRC_SYS"				value="java.lang.String" />
+				<entry key="TRADE_BOOKING_SYS"			value="java.lang.String" />
+				<entry key="TRADE_VENUE"			value="java.lang.String" />
+				<entry key="TRADE_TYPE"				value="java.lang.String" />
+				<entry key="PRODUCT_ID"				value="java.lang.String" />
+				<entry key="PRODUCT_SUB_TYPE"			value="java.lang.String" />
+				<entry key="PRIMARY_ASSET_CLASS"		value="java.lang.String" />
+				<entry key="SMCP"				value="java.lang.String" />
+				<entry key="FII"				value="java.lang.String" />
+				<entry key="TICKER"				value="java.lang.String" />
+				<entry key="CUSIP"				value="java.lang.String" />
+				<entry key="LIFECYCLE_STATE"			value="java.lang.String" />
+				<entry key="ACTIVE_FLAG"			value="char" />
+				<entry key="TRD_DATE"				value="java.time.LocalDate" />
+				<entry key="TRD_EXECUTION_TS"			value="java.time.Instant" />
+				<entry key="TERM_DATE"				value="java.time.LocalDate" />
+				<entry key="MODIFICATION_TS"			value="java.time.Instant" />
+				<entry key="MESSAGE_CREATE_TS"			value="java.time.Instant" />
+				<entry key="OCEAN_CREATE_TS"			value="java.time.Instant" />
+				<entry key="NOTIONAL1_AMT"			value="java.lang.Double" />
+				<entry key="NOTIONAL1_CRCY"			value="java.lang.String" />
+				<entry key="NOTIONAL2_AMT"			value="java.lang.Double" />
+				<entry key="NOTIONAL2_CCY"			value="java.lang.String" />
+				<entry key="TRADE_QUANTITY"			value="java.lang.Double" />
+				<entry key="TRADE_PRICE"			value="java.lang.Double" />
+				<entry key="STRIKE_PRICE"			value="java.lang.Double" />
+				<entry key="SECURITY_MULTIPLIER"		value="java.lang.Double" />
+				<entry key="BLOCK_ALLOC_FLAG"			value="char" />
+				<entry key="FIRM_BUY_SELL_IND"			value="java.lang.String" />
+				<entry key="SIGNED_ADJUSTED_NOMINAL_USD"	value="java.lang.Double" />
+				<entry key="SIGNED_ADJUSTED_TRADE_QUANTITY"	value="java.lang.Double" />
+				<entry key="FIRM_ACCT_MNEMONIC"			value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL6"			value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL7"			value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL8"			value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL9"			value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL6_DESCR"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL7_DESCR"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL8_DESCR"		value="java.lang.String" />
+				<entry key="MGD_SEG_LEVEL9_DESCR"		value="java.lang.String" />
+				<entry key="FIRM_BRANCH_CODE"			value="java.lang.String" />
+				<entry key="FIRM_GFCID"				value="java.lang.String" />
+				<entry key="CITI_LEGAL_ENTITY"			value="java.lang.String" />
+				<entry key="COUNTER_PARTY_ACCT_MNEMONIC"	value="java.lang.String" />
+				<entry key="COUNTER_PARTY_GFCID"		value="java.lang.String" />
+				<entry key="COUNTRY"				value="java.lang.String" />
+				<entry key="TRADER_SOEID"			value="java.lang.String" />
+				<entry key="SALESPERSON_SOEID"			value="java.lang.String" />
+				<entry key="EVPERSON_SOEID"			value="java.lang.String" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="tableSchemaRegistry" class="com.citi.ocean.restapi.datasource.base.TableSchemaRegistry">
+		<property name="tableSchemas">
+			<list>
+				<ref bean="otcTableSchema" />
+				<ref bean="cashEtdTableSchema" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="KDBCLUSTER1" class="com.citi.ocean.restapi.datasource.base.Cluster">
+		<constructor-arg name="name" value="KDBCLUSTER1" />
+		<constructor-arg name="type" value="KDB" />
+		<constructor-arg name="shards">
+			<list>
+				<bean class="com.citi.ocean.restapi.datasource.base.KDBShard">
+					<property name="topic" value="kdbcluster1_shard1_query_topic"/>
+					<property name="endpoints">
+						<list>
+							<bean class="com.citi.ocean.restapi.datasource.KDBEndpoint">
+								<property name="host" value="fxomdlnx3p.nam.nsroot.net" />
+								<property name="port" value="5555" />
+								<property name="user" value="rdb" />
+								<property name="password" value="rdb" />
+								<property name="connectionsCount" value="1" />
+							</bean>
+							<bean class="com.citi.ocean.restapi.datasource.KDBEndpoint">
+								<property name="host" value="fxomdlnx3c.nam.nsroot.net" />
+								<property name="port" value="5555" />
+								<property name="user" value="rdb" />
+								<property name="password" value="rdb" />
+								<property name="connectionsCount" value="1" />
+							</bean>
+						</list>
+					</property>
+					<property name="sharedCriteria">
+						<map>
+							<entry key="TRD_DATE">
+								<list>
+									<value>-1M</value>
+									<value>-2M</value>
+								</list>
+							</entry>
+						</map>
+					</property>
+				</bean>
+				<bean class="com.citi.ocean.restapi.datasource.base.KDBShard">
+					<property name="topic" value="kdbcluster1_shard2_query_topic"/>
+					<property name="endpoints">
+						<list>
+							<bean class="com.citi.ocean.restapi.datasource.KDBEndpoint">
+								<property name="host" value="fxomdlnx3p.nam.nsroot.net" />
+								<property name="port" value="6666" />
+								<property name="user" value="rdb" />
+								<property name="password" value="rdb" />
+								<property name="connectionsCount" value="1" />
+							</bean>
+							<bean class="com.citi.ocean.restapi.datasource.KDBEndpoint">
+								<property name="host" value="fxomdlnx3c.nam.nsroot.net" />
+								<property name="port" value="6666" />
+								<property name="user" value="rdb" />
+								<property name="password" value="rdb" />
+								<property name="connectionsCount" value="1" />
+							</bean>
+						</list>
+					</property>
+					<property name="sharedCriteria">
+						<map>
+							<entry key="TRD_DATE">
+								<list>
+									<value>-3M</value>
+									<value>-4M</value>
+								</list>
+							</entry>
+						</map>
+					</property>
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="KDBCLUSTER2" class="com.citi.ocean.restapi.datasource.base.Cluster">
+		<constructor-arg name="name" value="KDBCLUSTER2" />
+		<constructor-arg name="type" value="KDB" />
+		<constructor-arg name="shards">
+			<list>
+				<!-- TODO: ... -->
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="NETEZZA" class="com.citi.ocean.restapi.datasource.base.Cluster">
+		<constructor-arg name="name" value="NETEZZA" />
+		<constructor-arg name="type" value="NETEZZA" />
+		<constructor-arg name="shards">
+			<list>
+				<bean class="com.citi.ocean.restapi.datasource.base.NetezzaShard">
+					<property name="topic" value="netezzacluster_shard1_query_topic"/>
+					<property name="tableName" value="OTC_DERIV_TRADE_MASTER"/>
+					<property name="endpoints">
+						<list>
+							<bean class="com.citi.ocean.restapi.datasource.NetezzaEndpoint">
+								<property name="url" value="jdbc:netezza://gmonzdbprd01.nam.nsroot.net:5480/ocean_datamart_prd" />
+								<property name="user" value="ocean_mktdata_prd_sys" />
+								<property name="password" value="password" />
+								<property name="connectionsCount" value="1" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+				<bean class="com.citi.ocean.restapi.datasource.base.NetezzaShard">
+					<property name="topic" value="netezzacluster_shard1_query_topic"/>
+					<property name="tableName" value="CASH_ETD_TRADE_MASTER"/>
+					<property name="endpoints">
+						<list>
+							<bean class="com.citi.ocean.restapi.datasource.NetezzaEndpoint">
+								<property name="url" value="jdbc:netezza://gmonzdbprd01.nam.nsroot.net:5480/ocean_datamart_prd" />
+								<property name="user" value="ocean_mktdata_prd_sys" />
+								<property name="password" value="password" />
+								<property name="connectionsCount" value="1" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="SOLR" class="com.citi.ocean.restapi.datasource.base.Cluster">
+		<constructor-arg name="name" value="SOLR" />
+		<constructor-arg name="type" value="SOLR" />
+		<constructor-arg name="shards">
+			<list>
+				<bean class="com.citi.ocean.restapi.datasource.base.SolrShard">
+					<property name="topic" value="solrcluster_shard1_query_topic"/>
+					<property name="endpoints">
+						<list>
+							<bean class="com.citi.ocean.restapi.datasource.SolrEndpoint">
+								<property name="url" value="http://fxomdlnx3p.nam.nsroot.net:8984/solr/datamart/" />
+								<property name="connectionsCount" value="2" />
+							</bean>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="baseClustersRegistry" class="com.citi.ocean.restapi.datasource.base.ClustersRegistry">
+		<constructor-arg name="clustersList">
+			<list>
+				<ref bean="KDBCLUSTER1" />
+				<ref bean="KDBCLUSTER2" />
+				<ref bean="NETEZZA" />
+				<ref bean="SOLR" />
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="solrConfig" class="com.citi.ocean.restapi.datasource.base.SolrConfig">
+		<property name="solrUrl" value="http://fxomdlnx3p.nam.nsroot.net:8984/solr/datamart/"/>
+		<property name="instance" value="2"/>
+	</bean>
+</beans>
